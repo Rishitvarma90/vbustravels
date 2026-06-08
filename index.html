@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V Bus Travels</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* Header */
+header{
+    background:#ff6600;
+    color:white;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:55px;
+    color:#ff9800;
+}
+
+.hero h2{
+    margin:15px 0;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.8;
+}
+
+.book-btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:15px 35px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* About */
+section{
+    padding:70px 8%;
+}
+
+.title{
+    text-align:center;
+    color:#ff6600;
+    font-size:38px;
+    margin-bottom:25px;
+}
+
+.about{
+    text-align:center;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* Features */
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* Booking */
+.booking{
+    background:#fff;
+}
+
+.form-box{
+    max-width:700px;
+    margin:auto;
+    background:#fafafa;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.form-box input,
+.form-box select{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    background:#25D366;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+/* Footer */
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:38px;
+    }
+    nav{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🚌 V BUS</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#booking">Book Ticket</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>V BUS TRAVELS</h1>
+
+<h2>India's Trusted Bus Booking Partner</h2>
+
+<p>
+✅ Integrated with AbhiBus & redBus<br>
+✅ Free Travel Security (Insurance)<br>
+✅ 6,500+ Bus Operators<br>
+✅ 6,56,000+ Routes Across India<br>
+✅ Instant Confirmation & Best Offers
+</p>
+
+<a href="#booking" class="book-btn">
+🎫 BOOK A TICKET
+</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="title">About V Bus</h2>
+
+<div class="about">
+
+<p>
+V Bus is a trusted online bus booking platform providing access to
+6,500+ bus operators and 6,56,000+ routes across India.
+</p>
+
+<p>
+Book tickets quickly and securely with free travel security
+(insurance) on eligible bookings.
+</p>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section>
+
+<h2 class="title">Why Choose V Bus?</h2>
+
+<div class="features">
+
+<div class="card">
+<h3>🚌 6500+ Operators</h3>
+<p>Travel anywhere in India.</p>
+</div>
+
+<div class="card">
+<h3>📍 6,56,000+ Routes</h3>
+<p>Huge network coverage.</p>
+</div>
+
+<div class="card">
+<h3>🛡 Free Insurance</h3>
+<p>Added travel security.</p>
+</div>
+
+<div class="card">
+<h3>💰 Best Offers</h3>
+<p>Save more on every booking.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- BOOKING -->
+
+<section class="booking" id="booking">
+
+<h2 class="title">Book Your Ticket</h2>
+
+<div class="form-box">
+
+<input type="text" id="from" placeholder="Departure">
+
+<input type="text" id="to" placeholder="Destination">
+
+<input type="date" id="doj">
+
+<select id="budget">
+<option>₹0 - ₹500</option>
+<option>₹500 - ₹999</option>
+<option>₹999 - ₹1499</option>
+<option>₹1499 - ₹1999</option>
+<option>₹1999+</option>
+</select>
+
+<select id="busType">
+<option>All Buses</option>
+<option>Non AC Seater</option>
+<option>Non AC Sleeper Lower Sharing</option>
+<option>Non AC Sleeper Upper Sharing</option>
+<option>Non AC Sleeper Lower Single</option>
+<option>Non AC Sleeper Upper Single</option>
+<option>AC Seater</option>
+<option>AC Sleeper Lower Sharing</option>
+<option>AC Sleeper Upper Sharing</option>
+<option>AC Sleeper Lower Single</option>
+<option>AC Sleeper Upper Single</option>
+<option>Volvo Multi Axle Seater</option>
+<option>Volvo Multi Axle Sleeper</option>
+<option>Volvo 2+1 Sleeper</option>
+<option>Volvo Semi Sleeper</option>
+</select>
+
+<input type="text" id="name" placeholder="Customer Name">
+
+<input type="tel" id="phone" placeholder="Customer Phone">
+
+<input type="number" id="tickets" placeholder="No. of Tickets">
+
+<button class="submit-btn" onclick="sendWhatsApp()">
+Send Booking Request
+</button>
+
+</div>
+
+</section>
+
+
+
+<script>
+function sendWhatsApp(){
+
+let msg =
+`🚌 V BUS BOOKING REQUEST
+
+From: ${document.getElementById('from').value}
+To: ${document.getElementById('to').value}
+
+DOJ: ${document.getElementById('doj').value}
+
+Budget: ${document.getElementById('budget').value}
+
+Bus Type: ${document.getElementById('busType').value}
+
+Customer Name: ${document.getElementById('name').value}
+Phone: ${document.getElementById('phone').value}
+
+Tickets: ${document.getElementById('tickets').value}`;
+
+window.open(
+`https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
+'_blank'
+);
+}
+</script>
+
+<!-- STATS SECTION -->
+
+<section class="stats">
+
+    <div class="card">
+        <h2>6500+</h2>
+        <p>Bus Operators</p>
+    </div>
+
+    <div class="card">
+        <h2>6,56,000+</h2>
+        <p>Routes</p>
+    </div>
+
+    <div class="card">
+        <h2>100,000+</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div class="card">
+        <h2>24/7</h2>
+        <p>Customer Support</p>
+    </div>
+
+</section>
+
+<!-- CONTACT SECTION -->
+
+<section id="contact" class="contact-section">
+
+<h2 class="title">Contact Us</h2>
+
+<div class="features">
+
+    <div class="card">
+        <h3>📞 Phone</h3>
+        <p>9391225511</p>
+    </div>
+
+    <div class="card">
+        <h3>📧 Suggestions & Complaints</h3>
+        <p>vbustravels@gmail.com</p>
+    </div>
+
+    <div class="card">
+        <h3>📍 Address</h3>
+        <p>Dwaraka Tirumala, Andhra Pradesh</p>
+    </div>
+
+    <div class="card">
+        <h3>😊 Happy Customers</h3>
+        <p>100,000+ Happy Customers</p>
+    </div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>🚌 V Bus Travels</h3>
+
+<p>Integrated with AbhiBus & redBus</p>
+<p>6,500+ Bus Operators • 6,56,000+ Routes</p>
+<p>Free Travel Security (Insurance)</p>
+
+<br>
+
+<p>📞 9391225511</p>
+<p>📧 vbustravels@gmail.com</p>
+<p>📍 Dwaraka Tirumala, Andhra Pradesh</p>
+
+<br>
+
+<p>© 2026 V Bus Travels. All Rights Reserved.</p>
+
+</footer>
+
+<style>
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:70px 8%;
+    background:#fff7f0;
+}
+
+.contact-section{
+    padding:70px 8%;
+    background:#ffffff;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h2,
+.card h3{
+    color:#ff6600;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer h3{
+    margin-bottom:15px;
+    color:#ff9800;
+}
+</style>
+```
+
+
+</body>
+</html>
+```
