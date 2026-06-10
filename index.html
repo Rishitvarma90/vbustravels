@@ -185,8 +185,11 @@ footer{
 
     <nav>
         <a href="#home">Home</a>
+    <a href="#booking">Book Ticket</a>
+       <a href="#gallery">Images</a>
+    <a href="#terms">Terms & Conditions</a>
         <a href="#about">About</a>
-        <a href="#booking">Book Ticket</a>
+        
     </nav>
 </header>
 
@@ -270,6 +273,7 @@ Book tickets quickly and securely with free travel security
 
 </section>
 
+```html
 <!-- BOOKING -->
 
 <section class="booking" id="booking">
@@ -278,13 +282,14 @@ Book tickets quickly and securely with free travel security
 
 <div class="form-box">
 
-<input type="text" id="from" placeholder="Departure">
+<input type="text" id="from" placeholder="Departure" minlength="3" required>
 
-<input type="text" id="to" placeholder="Destination">
+<input type="text" id="to" placeholder="Destination" minlength="3" required>
 
-<input type="date" id="doj">
+<input type="date" id="doj" required>
 
-<select id="budget">
+<select id="budget" required>
+<option value="">Select Budget</option>
 <option>₹0 - ₹500</option>
 <option>₹500 - ₹999</option>
 <option>₹999 - ₹1499</option>
@@ -292,7 +297,8 @@ Book tickets quickly and securely with free travel security
 <option>₹1999+</option>
 </select>
 
-<select id="busType">
+<select id="busType" required>
+<option value="">Select Bus Type</option>
 <option>All Buses</option>
 <option>Non AC Seater</option>
 <option>Non AC Sleeper Lower Sharing</option>
@@ -304,17 +310,17 @@ Book tickets quickly and securely with free travel security
 <option>AC Sleeper Upper Sharing</option>
 <option>AC Sleeper Lower Single</option>
 <option>AC Sleeper Upper Single</option>
-<option>Volvo Multi Axle Seater</option>
-<option>Volvo Multi Axle Sleeper</option>
-<option>Volvo 2+1 Sleeper</option>
-<option>Volvo Semi Sleeper</option>
+<option>Volvo  Sleeper Lower Sharing</option>
+<option>Volvo Sleeper Upper Sharing</option>
+<option>Volvo Lower Single</option>
+<option>Volvo upper Single</option>
 </select>
 
-<input type="text" id="name" placeholder="Customer Name">
+<input type="text" id="name" placeholder="Customer Name" required>
 
-<input type="tel" id="phone" placeholder="Customer Phone">
+<input type="tel" id="phone" placeholder="10 Digit Mobile Number" maxlength="10" required>
 
-<input type="number" id="tickets" placeholder="No. of Tickets">
+<input type="number" id="tickets" placeholder="No. of Tickets" min="1" required>
 
 <button class="submit-btn" onclick="sendWhatsApp()">
 Send Booking Request
@@ -324,34 +330,70 @@ Send Booking Request
 
 </section>
 
-
-
 <script>
+
+// Set minimum date as today
+window.onload = function () {
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("doj").setAttribute("min", today);
+};
+
 function sendWhatsApp(){
 
-let msg =
+    let from = document.getElementById('from').value.trim();
+    let to = document.getElementById('to').value.trim();
+    let doj = document.getElementById('doj').value;
+    let budget = document.getElementById('budget').value;
+    let busType = document.getElementById('busType').value;
+    let name = document.getElementById('name').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    let tickets = document.getElementById('tickets').value;
+
+    if(!from || !to || !doj || !budget || !busType || !name || !phone || !tickets){
+        alert("Please fill all required fields");
+        return;
+    }
+
+    if(from.length < 3){
+        alert("Departure must contain at least 3 characters");
+        return;
+    }
+
+    if(to.length < 3){
+        alert("Destination must contain at least 3 characters");
+        return;
+    }
+
+    if(!/^[0-9]{10}$/.test(phone)){
+        alert("Phone number must be exactly 10 digits");
+        return;
+    }
+
+    let msg =
 `🚌 V BUS BOOKING REQUEST
 
-From: ${document.getElementById('from').value}
-To: ${document.getElementById('to').value}
+📍 Departure: ${from}
+📍 Destination: ${to}
 
-DOJ: ${document.getElementById('doj').value}
+📅 DOJ: ${doj}
 
-Budget: ${document.getElementById('budget').value}
+💰 Budget: ${budget}
 
-Bus Type: ${document.getElementById('busType').value}
+🚌 Bus Type: ${busType}
 
-Customer Name: ${document.getElementById('name').value}
-Phone: ${document.getElementById('phone').value}
+👤 Customer Name: ${name}
+📞 Phone: ${phone}
 
-Tickets: ${document.getElementById('tickets').value}`;
+🎫 Tickets: ${tickets}`;
 
-window.open(
-`https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
-'_blank'
-);
+    window.open(
+    `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
+    '_blank'
+    );
 }
 </script>
+
+
 
 <!-- STATS SECTION -->
 
@@ -411,6 +453,87 @@ window.open(
 
 </section>
 
+
+<section id="gallery">
+
+<h2 class="title">Our Premium Buses</h2>
+
+<div class="gallery">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm5PKaT3ZNtnZ1iDDF203mZofGD3zxDQYSKw&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXqRChInIFihkHPkJ6Mifc15yXERaXc7xd-g&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnfW1RMpJRRz9DkJEU8MLH3PwFo_hnSaIspQ&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZfgcgUCbwm2I0hKM4x8Bipb8Hh-ttEriJQ&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwl5S0wrUCd5IFdz-y5pFE3U2-nFr1Hn40MQ&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckLu9MWpGgtPZcYwu7O83bpWAsB95GrLP2w&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNcbU4GCIydYKVdJAb0Oa7iQ0P1LfmsSEV2Q&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLa8GRpJe9IAvtpmlw9SP2_2ewsrjWIJwsMg&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2-i0h7U6FU6EIARToPwFfllZUZ1rYd6d7xw&s" alt="Bus">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxIhbh9Ihy-Ar5ykpHGoaa0QFxVrBH59xyKA&s" alt="Bus">
+
+
+</div>
+
+</section>
+
+<style>
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+</style>
+<section id="terms" class="terms-section">
+
+<h2 class="title">Terms & Conditions</h2>
+
+<div class="terms-box">
+
+<p>1. V Bus is an online booking platform and does not operate buses directly.</p>
+
+<p>2. Bus schedules, routes, seat availability, boarding and dropping points are controlled by the respective bus operator.</p>
+
+<p>3. Passengers must carry a valid government-issued photo ID during travel.</p>
+
+<p>4. Cancellation and refund policies vary by operator and booking partner.</p>
+
+<p>5. Free Travel Security (Insurance) is subject to insurer eligibility, policy terms, and conditions.</p>
+
+<p>6. V Bus is not liable for delays, breakdowns, weather conditions, traffic disruptions, accidents, route changes, or other unforeseen circumstances.</p>
+
+<p>7. Passengers should arrive at the boarding point at least 15 minutes before departure time.</p>
+
+<p>8. Boarding may be denied if passenger details provided during booking are incorrect.</p>
+
+<p>9. Operators reserve the right to change vehicle type, seat number, or boarding point when necessary.</p>
+
+<p>10. By submitting a booking request, you agree to these Terms & Conditions.</p>
+
+</div>
+
+</section>
 <!-- FOOTER -->
 
 <footer>
@@ -478,9 +601,9 @@ footer h3{
     color:#ff9800;
 }
 </style>
-```
+
 
 
 </body>
 </html>
-```
+
