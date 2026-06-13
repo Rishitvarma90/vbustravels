@@ -380,8 +380,7 @@ Book tickets quickly and securely with free travel security
 
 </section>
 
-
-```html
+vbus
 <!-- BOOKING SECTION -->
 
 <section class="booking" id="booking">
@@ -601,84 +600,8 @@ function sendWhatsApp(){
     },1000);
 }
 </script>
-```
 
 
-// Set minimum date as today
-window.onload = function () {
-
-    const today = new Date();
-
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2,'0');
-    const dd = String(today.getDate()).padStart(2,'0');
-
-    const currentDate = `${yyyy}-${mm}-${dd}`;
-
-    document.getElementById("doj").min = currentDate;
-    document.getElementById("doj").value = currentDate;
-};
-
-function sendWhatsApp(){
-
-    let from = document.getElementById('from').value.trim();
-    let to = document.getElementById('to').value.trim();
-    let doj = document.getElementById('doj').value;
-    let budget = document.getElementById('budget').value;
-    let busType = document.getElementById('busType').value;
-    let name = document.getElementById('name').value.trim();
-    let phone = document.getElementById('phone').value.trim();
-    let tickets = document.getElementById('tickets').value;
-
-    if(!from || !to || !doj || !budget || !busType || !name || !phone || !tickets){
-        alert("Please fill all required fields");
-        return;
-    }
-
-    if(from.length < 3){
-        alert("Departure must contain at least 3 characters");
-        return;
-    }
-
-    if(to.length < 3){
-        alert("Destination must contain at least 3 characters");
-        return;
-    }
-
-    if(!/^[0-9]{10}$/.test(phone)){
-        alert("Phone number must be exactly 10 digits");
-        return;
-    }
-
-    let msg =
-`🚌 V BUS BOOKING REQUEST
-
-📍 Departure: ${from}
-📍 Destination: ${to}
-
-📅 DOJ: ${doj}
-
-💰 Budget: ${budget}
-
-🚌 Bus Type: ${busType}
-
-👤 Customer Name: ${name}
-📞 Phone: ${phone}
-
-🎫 Tickets: ${tickets}`;
-
-    document.getElementById("thankYouPopup").style.display = "flex";
-
-    setTimeout(function(){
-
-        window.open(
-        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
-        '_blank'
-        );
-
-    },2000);
-}
-</script>
 
 
 
