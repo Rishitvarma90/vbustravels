@@ -381,7 +381,7 @@ Book tickets quickly and securely with free travel security
 </section>
 
 
-
+```html
 <!-- BOOKING SECTION -->
 
 <section class="booking" id="booking">
@@ -450,7 +450,7 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
 <input type="number" id="tickets" min="1" placeholder="No. of Tickets" required>
 
 <button onclick="sendWhatsApp()" class="submit-btn">
-Send Booking Request
+🚌 Send Booking Request
 </button>
 
 </div>
@@ -469,8 +469,7 @@ height:100%;
 background:rgba(0,0,0,0.7);
 justify-content:center;
 align-items:center;
-z-index:9999;
-">
+z-index:9999;">
 
 <div style="
 background:white;
@@ -478,8 +477,7 @@ width:90%;
 max-width:450px;
 padding:25px;
 border-radius:15px;
-text-align:center;
-">
+text-align:center;">
 
 <img src="https://www.jellybeanparty.sg/wp-content/uploads/2017/01/Thank-you-for-booking.png"
 style="
@@ -487,30 +485,15 @@ width:100%;
 height:220px;
 object-fit:cover;
 border-radius:12px;
-margin-bottom:15px;
-">
+margin-bottom:15px;">
 
-<h2 style="color:#ff6600;">🎉 Thank You!</h2>
+<h2 id="popupTitle" style="color:#ff6600;">
+⏳ Please Wait... 3 Seconds
+</h2>
 
-<p>
-Thank you for choosing <b>V Bus Travels</b>.
-<br><br>
-Your booking request has been submitted successfully.
+<p id="popupText">
+Processing your booking request...
 </p>
-
-<button
-onclick="document.getElementById('thankYouPopup').style.display='none'"
-style="
-background:#25D366;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:10px;
-cursor:pointer;
-margin-top:15px;
-">
-Close
-</button>
 
 </div>
 
@@ -519,12 +502,12 @@ Close
 <script>
 
 // Set minimum date as today
-window.onload = function () {
+window.onload = function(){
 
     const today = new Date();
 
     const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2,'0');
+    const mm = String(today.getMonth()+1).padStart(2,'0');
     const dd = String(today.getDate()).padStart(2,'0');
 
     const currentDate = `${yyyy}-${mm}-${dd}`;
@@ -532,9 +515,6 @@ window.onload = function () {
     document.getElementById("doj").min = currentDate;
     document.getElementById("doj").value = currentDate;
 };
-
-```html
-<script>
 
 function sendWhatsApp(){
 
@@ -584,65 +564,122 @@ function sendWhatsApp(){
 
 🎫 Tickets: ${tickets}`;
 
-    // Show popup
     document.getElementById("thankYouPopup").style.display = "flex";
 
-    // Redirect to WhatsApp after 2 seconds
+    let count = 3;
+
+    document.getElementById("popupTitle").innerHTML =
+    "⏳ Please Wait... " + count + " Seconds";
+
+    let timer = setInterval(function(){
+
+        count--;
+
+        if(count > 0){
+
+            document.getElementById("popupTitle").innerHTML =
+            "⏳ Please Wait... " + count + " Seconds";
+
+        }else{
+
+            clearInterval(timer);
+
+            document.getElementById("popupTitle").innerHTML =
+            "🎉 Thank You!";
+
+            document.getElementById("popupText").innerHTML =
+            "Thank you for choosing <b>V Bus Travels</b>.<br><br>Redirecting to WhatsApp...";
+
+            setTimeout(function(){
+
+                window.location.href =
+                `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`;
+
+            },1000);
+        }
+
+    },1000);
+}
+</script>
+```
+
+
+// Set minimum date as today
+window.onload = function () {
+
+    const today = new Date();
+
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+
+    const currentDate = `${yyyy}-${mm}-${dd}`;
+
+    document.getElementById("doj").min = currentDate;
+    document.getElementById("doj").value = currentDate;
+};
+
+function sendWhatsApp(){
+
+    let from = document.getElementById('from').value.trim();
+    let to = document.getElementById('to').value.trim();
+    let doj = document.getElementById('doj').value;
+    let budget = document.getElementById('budget').value;
+    let busType = document.getElementById('busType').value;
+    let name = document.getElementById('name').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    let tickets = document.getElementById('tickets').value;
+
+    if(!from || !to || !doj || !budget || !busType || !name || !phone || !tickets){
+        alert("Please fill all required fields");
+        return;
+    }
+
+    if(from.length < 3){
+        alert("Departure must contain at least 3 characters");
+        return;
+    }
+
+    if(to.length < 3){
+        alert("Destination must contain at least 3 characters");
+        return;
+    }
+
+    if(!/^[0-9]{10}$/.test(phone)){
+        alert("Phone number must be exactly 10 digits");
+        return;
+    }
+
+    let msg =
+`🚌 V BUS BOOKING REQUEST
+
+📍 Departure: ${from}
+📍 Destination: ${to}
+
+📅 DOJ: ${doj}
+
+💰 Budget: ${budget}
+
+🚌 Bus Type: ${busType}
+
+👤 Customer Name: ${name}
+📞 Phone: ${phone}
+
+🎫 Tickets: ${tickets}`;
+
+    document.getElementById("thankYouPopup").style.display = "flex";
+
     setTimeout(function(){
 
-        window.location.href =
-        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`;
+        window.open(
+        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
+        '_blank'
+        );
 
-    }, 2000);
+    },2000);
 }
-
 </script>
 
-<!-- THANK YOU POPUP -->
-
-<div id="thankYouPopup" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
-z-index:9999;
-">
-
-<div style="
-background:white;
-width:90%;
-max-width:450px;
-padding:25px;
-border-radius:15px;
-text-align:center;
-">
-
-<img src="https://www.jellybeanparty.sg/wp-content/uploads/2017/01/Thank-you-for-booking.png"
-style="
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:12px;
-margin-bottom:15px;
-">
-
-<h2 style="color:#ff6600;">🎉 Thank You!</h2>
-
-<p>
-Thank you for choosing <b>V Bus Travels</b>.
-<br><br>
-Redirecting to WhatsApp...
-</p>
-
-</div>
-
-</div>
-```
 
 
 
