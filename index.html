@@ -381,8 +381,7 @@ Book tickets quickly and securely with free travel security
 </section>
 
 
-<!-- BOOKING -->
-```html
+
 <!-- BOOKING SECTION -->
 
 <section class="booking" id="booking">
@@ -534,6 +533,9 @@ window.onload = function () {
     document.getElementById("doj").value = currentDate;
 };
 
+```html
+<script>
+
 function sendWhatsApp(){
 
     let from = document.getElementById('from').value.trim();
@@ -582,19 +584,65 @@ function sendWhatsApp(){
 
 🎫 Tickets: ${tickets}`;
 
+    // Show popup
     document.getElementById("thankYouPopup").style.display = "flex";
 
+    // Redirect to WhatsApp after 2 seconds
     setTimeout(function(){
 
-        window.open(
-        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
-        '_blank'
-        );
+        window.location.href =
+        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`;
 
-    },2000);
+    }, 2000);
 }
+
 </script>
 
+<!-- THANK YOU POPUP -->
+
+<div id="thankYouPopup" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div style="
+background:white;
+width:90%;
+max-width:450px;
+padding:25px;
+border-radius:15px;
+text-align:center;
+">
+
+<img src="https://www.jellybeanparty.sg/wp-content/uploads/2017/01/Thank-you-for-booking.png"
+style="
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+">
+
+<h2 style="color:#ff6600;">🎉 Thank You!</h2>
+
+<p>
+Thank you for choosing <b>V Bus Travels</b>.
+<br><br>
+Redirecting to WhatsApp...
+</p>
+
+</div>
+
+</div>
+```
 
 
 
