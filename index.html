@@ -6,6 +6,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V Bus Travels</title>
 
+
+<!-- Welcome Popup -->
+
+<div id="welcomePopup" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="closePopup()">&times;</span>
+
+        <img src="https://gos3.ibcdn.com/img-1623419458.jpg" alt="V Bus" class="popup-image">
+
+        <h2>🚌 Welcome to V Bus Travels</h2>
+
+        <p>
+            ✅ 6,500+ Bus Operators<br>
+            ✅ 6,56,000+ Routes<br>
+            ✅ 2,000+ Cities Covered<br>
+            ✅ 100,000+ Happy Customers<br>
+            ✅ Free Travel Security (Insurance)
+        </p>
+
+        <a href="#booking" class="popup-btn" onclick="closePopup()">
+            🎫 Book Ticket
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.popup-content{
+    background:#fff;
+    width:90%;
+    max-width:450px;
+    border-radius:15px;
+    text-align:center;
+    padding:20px;
+    position:relative;
+    animation:popupShow 0.4s ease;
+}
+
+.popup-image{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.close{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.popup-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:#25D366;
+    color:white;
+    padding:12px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@keyframes popupShow{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+</style>
+
+<script>
+
+function closePopup(){
+    document.getElementById("welcomePopup").style.display = "none";
+}
+
+window.onload = function(){
+    document.getElementById("welcomePopup").style.display = "flex";
+};
+
+</script>
+
 <style>
 *{
     margin:0;
@@ -273,83 +380,31 @@ Book tickets quickly and securely with free travel security
 
 </section>
 
-```html
+
 <!-- BOOKING -->
+```html
+<!-- BOOKING SECTION -->
 
 <section class="booking" id="booking">
 
-<h2 class="title">Book Your Ticket</h2>
+<h2 class="title">🚌 Book Your Ticket</h2>
+
+<p style="color:red;font-weight:bold;">
+* Indicates Required Fields
+</p>
 
 <div class="form-box">
 
-<input type="text" id="from" placeholder="Departure" minlength="3" required>
+<label>Departure <span style="color:red">*</span></label>
+<input type="text" id="from" placeholder="Departure City" required>
 
-<input type="text" id="to" placeholder="Destination" minlength="3" required>
+<label>Destination <span style="color:red">*</span></label>
+<input type="text" id="to" placeholder="Destination City" required>
 
-<!-- Date of Journey -->
+<label>Date of Journey <span style="color:red">*</span></label>
+<input type="date" id="doj" required>
 
-<label for="doj" class="date-label">
-    📅 Date of Journey
-</label>
-
-<input
-    type="date"
-    id="doj"
-    name="doj"
-    required>
-
-<style>
-
-.date-label{
-    display:block;
-    margin:10px 0 5px;
-    font-weight:bold;
-    color:#333;
-}
-
-#doj{
-    width:100%;
-    padding:14px;
-    font-size:16px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    background:#fff;
-    cursor:pointer;
-}
-
-/* Calendar Icon */
-#doj::-webkit-calendar-picker-indicator{
-    cursor:pointer;
-    opacity:1;
-}
-
-</style>
-
-<script>
-
-// Set minimum date as today
-window.addEventListener("load", function(){
-
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-
-    const currentDate = `${year}-${month}-${day}`;
-
-    const doj = document.getElementById("doj");
-
-    // Prevent past dates
-    doj.min = currentDate;
-
-    // Show today's date by default
-    doj.value = currentDate;
-
-});
-
-</script>
-
+<label>Budget <span style="color:red">*</span></label>
 <select id="budget" required>
 <option value="">Select Budget</option>
 <option>₹0 - ₹500</option>
@@ -359,6 +414,7 @@ window.addEventListener("load", function(){
 <option>₹1999+</option>
 </select>
 
+<label>Bus Type <span style="color:red">*</span></label>
 <select id="busType" required>
 <option value="">Select Bus Type</option>
 <option>All Buses</option>
@@ -372,19 +428,29 @@ window.addEventListener("load", function(){
 <option>AC Sleeper Upper Sharing</option>
 <option>AC Sleeper Lower Single</option>
 <option>AC Sleeper Upper Single</option>
-<option>Volvo  Sleeper Lower Sharing</option>
-<option>Volvo Sleeper Upper Sharing</option>
-<option>Volvo Lower Single</option>
-<option>Volvo upper Single</option>
+<option>Volvo Multi Axle Seater</option>
+<option>Volvo Multi Axle Sleeper</option>
+<option>Volvo 2+1 Sleeper</option>
+<option>Volvo Semi Sleeper</option>
 </select>
 
+<label>Customer Name <span style="color:red">*</span></label>
 <input type="text" id="name" placeholder="Customer Name" required>
 
-<input type="tel" id="phone" placeholder="10 Digit Mobile Number" maxlength="10" required>
+<label>Mobile Number <span style="color:red">*</span></label>
+<input
+type="tel"
+id="phone"
+placeholder="Enter 10 Digit Mobile Number"
+maxlength="10"
+inputmode="numeric"
+required
+oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
 
-<input type="number" id="tickets" placeholder="No. of Tickets" min="1" required>
+<label>No. of Tickets <span style="color:red">*</span></label>
+<input type="number" id="tickets" min="1" placeholder="No. of Tickets" required>
 
-<button class="submit-btn" onclick="sendWhatsApp()">
+<button onclick="sendWhatsApp()" class="submit-btn">
 Send Booking Request
 </button>
 
@@ -392,12 +458,80 @@ Send Booking Request
 
 </section>
 
+<!-- THANK YOU POPUP -->
+
+<div id="thankYouPopup" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+<div style="
+background:white;
+width:90%;
+max-width:450px;
+padding:25px;
+border-radius:15px;
+text-align:center;
+">
+
+<img src="https://www.jellybeanparty.sg/wp-content/uploads/2017/01/Thank-you-for-booking.png"
+style="
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+">
+
+<h2 style="color:#ff6600;">🎉 Thank You!</h2>
+
+<p>
+Thank you for choosing <b>V Bus Travels</b>.
+<br><br>
+Your booking request has been submitted successfully.
+</p>
+
+<button
+onclick="document.getElementById('thankYouPopup').style.display='none'"
+style="
+background:#25D366;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:10px;
+cursor:pointer;
+margin-top:15px;
+">
+Close
+</button>
+
+</div>
+
+</div>
+
 <script>
 
 // Set minimum date as today
 window.onload = function () {
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("doj").setAttribute("min", today);
+
+    const today = new Date();
+
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+
+    const currentDate = `${yyyy}-${mm}-${dd}`;
+
+    document.getElementById("doj").min = currentDate;
+    document.getElementById("doj").value = currentDate;
 };
 
 function sendWhatsApp(){
@@ -448,12 +582,19 @@ function sendWhatsApp(){
 
 🎫 Tickets: ${tickets}`;
 
-    window.open(
-    `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
-    '_blank'
-    );
+    document.getElementById("thankYouPopup").style.display = "flex";
+
+    setTimeout(function(){
+
+        window.open(
+        `https://wa.me/918520998910?text=${encodeURIComponent(msg)}`,
+        '_blank'
+        );
+
+    },2000);
 }
 </script>
+
 
 
 
@@ -514,11 +655,117 @@ function sendWhatsApp(){
 </div>
 
 </section>
+<section id="operators">
+
+<h2 class="title">Our Sponosered  Operators</h2>
+
+<div class="gallery">
+
+<div class="card">
+<img src="https://gst-contracts.s3.ap-southeast-1.amazonaws.com/uploads/bcc/cms/asset/avatar/652217/gallery_2.png" alt="Sri Ganga Travels">
+<h3>Sri Ganga Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://s1.rdbuz.com/bo-images/IND/WM/33710/54/FR/ML/webp/gVxzzm.webp" alt="ASBR Travels">
+<h3>ASBR Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSacbM60YfqLKzG1yqGhoWtNU6b7Tpdlwa9N1Y4A5zG2g&s=10" alt="LVP TRAVELS">
+<h3>LVP travels</h3>
+</div>
+
+<div class="card">
+<img src="https://s3-ap-southeast-1.amazonaws.com/rb-plus/BI/APP/IND/WM/5368/1746/FR/ML/0LlifD.jpeg" alt="ATLURI">
+<h3>Atluri</h3>
+</div>
+
+<div class="card">
+<img src="https://s1.rdbuz.com/bo-images/IND/WM/33277/54/SI/L/webp/Jcte0i.webp" alt="VRL Travels">
+<h3>Sree kvr  Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmI_iQZ_PDBnX07AnJP0CD3jb7kaGSK8TWkYekwTACpg&s=10" alt="Kaveri Travels">
+<h3>Kaveri Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSfcHiug2-c58PUbJXKLmvGC6P82--SRoWrwANhuKwEw&s=10" alt="Kaveri Travels">
+<h3>SVKDT</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5qw6xhup6V7vehvK81k86UxQ5bAlfzFHSu0v1iPe5PQ&s=10" alt="Kaveri Travels">
+<h3>Sri krishna Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMl3xtFWC-uXVs2rpsR3NEtx5eZDUVHOjp-qE7ucdKSQ&s=10" alt="Kaveri Travels">
+<h3>orange Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1odh1l8jMf7vLKxLRBQTz3-FTd5E7bTjKw75_J9gOQ&s=10" alt="Kaveri Travels">
+<h3>Pramukh Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWHq-KjKPiLO0ubkjD2Fvm0S9EokSMHMHpKmQomIWi-Q&s=10" alt="Kaveri Travels">
+<h3>zing bus plus/MAXX</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHkj29hJwAKDlaCJ98upRuiks_8fCFVtgRyqByOQagdA&s=10" alt="Kaveri Travels">
+<h3>INTRCITY Travels</h3>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa0mvM-RX2qfJtqX8-Jhd1ZLFFjjfGl98LRub_Awb4Qg&s=10" alt="Kaveri Travels">
+<h3>Fresh us</h3>
+</div>
+
+</div>
+
+</section>
+
+<style>
+#operators{
+    padding:70px 8%;
+    background:#fff;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:150px;
+    object-fit:contain;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#ff6600;
+}
+</style>
 
 
 <section id="gallery">
 
-<h2 class="title">Our Premium Buses</h2>
+<h2 class="title">buses images</h2>
 
 <div class="gallery">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm5PKaT3ZNtnZ1iDDF203mZofGD3zxDQYSKw&s" alt="Bus">
